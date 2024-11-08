@@ -93,11 +93,15 @@ export async function topup(opt: TopupArg): Promise<Result<unknown, unknown>> {
   await web_page.locator('button[data-target="#VOUCHER_panel"]').click();
   await web_page.waitForTimeout(Math.random() * 1000);
   // click unipin voucher
-  await web_page.locator("div#pc_div_659").click();
+  if (parsed_coupon_result.data.kind === "voucher") {
+    await web_page.getByText("UniPin Voucher").click();
+  }else{
+    await web_page.getByText("UP Gift Card").click();
+  }
   await web_page.waitForURL(/^https:\/\/www\.unipin\.com\/unibox\/c\/.*$/, {
     waitUntil: "load",
   });
-  // fillup voucher and pin
+  // fillup code and pin
   await web_page
     .locator('input[name="serial_1"]')
     .fill(parsed_coupon_result.data.code.sl_1);
@@ -139,9 +143,9 @@ export async function topup(opt: TopupArg): Promise<Result<unknown, unknown>> {
 }
 // example call
 topup({
-  uid: "69420420",
+  uid: "728027523",
   amount: 25,
-  coupon: "BDMB-L-S-00001234 1234-5678-9012-3456",
+  coupon: "UPBD-L-S-00001234 1234-5678-9012-3456",
 }).then((res) => {
   if (res.result == "error") {
     console.log(`${res.result}: ${res.cause}`);
