@@ -1,0 +1,16 @@
+{
+  "name": "FreeFireBazar-Automation",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "playwright": "^1.48.2",
+    "playwright-extra": "^4.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2"
+  },
+  "type": "module",
+  "devDependencies": {
+    "@types/node": "^22.9.0",
+    "@types/puppeteer": "^7.0.4"
+  }
+}
